@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Link,BrowserRouter,Route} from 'react-router-dom';
-import Menu from './Menu';
-import Orders from './Orders';
-import Cart from './Cart';
-import Checkout from './Checkout'; 
-const Nav =() => {
-  return (
-  <header className="App-header">
-      <div style={{display: 'flex', flexDirection: 'row', padding: '20px', justifyContent: 'space-evenly'}}>
-          <div><Link to="/">Menu</Link></div>
-          <div><Link to="/orders">Orders</Link></div>
-      </div>
-  </header>
-  )
-}
+import {BrowserRouter,Route} from 'react-router-dom';
+import Menu from './components/Menu';
+import Orders from './components/Orders';
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
+import Nav from "./components/Nav";
+
 class App extends Component {
   render() {
     return (
