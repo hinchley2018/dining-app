@@ -5,8 +5,8 @@
   "description": "API for wait-list",
   "main": "index.js",
   "scripts": {
-    "start-prod": "node ./server/index.js",
-    "start": "NODE_ENV=development node server",
+    "start-prod": "node ./api/index.js",
+    "start": "NODE_ENV=development node api",
     "heroku-postbuild": "cd client/ && npm install --only=dev && npm install && npm run build"
   },
   "cacheDirectories": [
