@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // connect to the database and load models
-require('./models').connect(process.env.MONGODB_URI);
+// require('./models').connect(process.env.MONGODB_URI);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
