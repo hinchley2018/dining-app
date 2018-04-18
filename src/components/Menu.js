@@ -1,36 +1,46 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from "react-redux";
+import {addItem, getItems} from "../redux/orders";
+import cart from '../assets/cart.png';
 
-const MenuItem = ({title,price}) => {
+const MenuItem = ({title, price, addItem}) => {
     return (
         <div>
             {title}
             <br/>
             ${price}
+            <button type="button" className="btn btn-default btn-lg" onClick={() => addItem({title: title, price: price})}>
+                {/*<span className="glyphicon glyphicon-plus" aria-hidden="true"></span>*/}
+                +
+            </button>
         </div>
     )
-}
+};
 
-const items = [
-    {
-        title: 'Chicken Sandwich',
-        price: '6.75'
-    },
-    {
-        title: 'Spicy Deluxe',
-        price: '6.75'
-    },
-    {
-        title: '8 Ct. Chicken Nuggets',
-        price: '6.75'
+class Menu extends Component {
+    componentDidMount(){
+        this.props.getItems();
     }
-]
 
-const Menu =() => {
-    return (
-        <div style={{display: 'flex', flexDirection: 'column', padding: '20px', justifyContent: 'space-evenly', height:'400px'}}>
-          {items.map(item => <div>{item.title} <br/> ${item.price}</div>)}
-        </div>
-    )
+    render() {
+        return (
+            <div>
+                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                    <Link to="/cart"><img src={cart} alt={'cart'} width={'50'} height={'50'}/></Link>{this.props.cartItems.length}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'column', padding: '20px', justifyContent: 'space-evenly', height:'400px'}}>
+                    {this.props.items.map(item =><MenuItem title={item.title} price={item.price} addItem={this.props.addItem}/>)}
+                </div>
+            </div>
+        )
+    }
 }
-export default Menu;
+
+function mapStateToProps(state) {
+    return {
+        items: state.orders.menuItems,
+        cartItems: state.orders.cart
+    };
+}
+export default connect(mapStateToProps,{getItems,addItem})(Menu);
