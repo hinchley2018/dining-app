@@ -1,0 +1,30 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: space-evenly;
+}
+.img {
+    width: 200px;
+    height: 100px;
+}
+
+.App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+}
+
+@media all and (max-width: 500px) {
+    .nav {
+        flex-direction: column;
+    }
+    .img {
+        width: 200px;
+        height: 100px;
+    }
+    .App-header {
+        height: 250px;
+    }
+}

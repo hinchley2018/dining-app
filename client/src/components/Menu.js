@@ -18,7 +18,7 @@ const MenuItem = ({title, price, addItem}) => {
     )
 };
 
-class Menu extends Component {
+class Nav extends Component {
     componentDidMount(){
         this.props.getItems();
     }
@@ -26,8 +26,13 @@ class Menu extends Component {
     render() {
         return (
             <div>
-                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <Link to="/cart"><img src={cart} alt={'cart'} width={'50'} height={'50'}/></Link>{this.props.cartItems.length}
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                    <h1>Menu</h1>
+                    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                        <div>
+                            <Link to="/cart"><img src={cart} alt={'cart'} width={'50'} height={'50'}/></Link>{this.props.cartItems.length}
+                        </div>
+                    </div>
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column', padding: '20px', justifyContent: 'space-evenly', height:'400px'}}>
                     {this.props.items.map(item =><MenuItem title={item.title} price={item.price} addItem={this.props.addItem}/>)}
@@ -43,4 +48,4 @@ function mapStateToProps(state) {
         cartItems: state.orders.cart
     };
 }
-export default connect(mapStateToProps,{getItems,addItem})(Menu);
+export default connect(mapStateToProps,{getItems,addItem})(Nav);

@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {removeItem} from "../redux/orders";
+import {clearCart, removeItem} from "../redux/orders";
 import {Link} from "react-router-dom";
+import {getTotal} from "../utils/orders";
 
-const CartItem = ({title, price, removeItem}) => {
+export const CartItem = ({title, price, removeItem}) => {
     return (
         <div>
             {title}
@@ -17,12 +18,15 @@ const CartItem = ({title, price, removeItem}) => {
 const Cart =({cartItems, removeItem}) => {
     return (
         <div>
-            <h1>Cart</h1>
-            <Link to="/checkout"><button>Checkout</button></Link>
+            <div style={{display: 'flex', flexDirection: 'row', padding: '20px', justifyContent: 'space-evenly'}}>
+                <Link to="/"><button>Add More Items</button></Link>
+                <h1>Cart</h1>
+                <Link to="/checkout"><button>Checkout</button></Link>
+            </div>
             <div style={{display: 'flex', flexDirection: 'column', padding: '20px', justifyContent: 'space-evenly', height:'400px'}}>
                 {cartItems.map(item => <CartItem title={item.title} price={item.price} removeItem={removeItem}/>)}
             </div>
-            <h2>Total ${}</h2>
+            <h2>Total ${getTotal(cartItems)}</h2>
         </div>
     )
 };

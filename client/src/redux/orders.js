@@ -5,6 +5,7 @@ import {API_URL} from '../config';
 const GET_MENU_ITEMS = 'get_menu_items',
     ADD_ITEM = 'add_item',
     REMOVE_ITEM = 'remove_item',
+    CLEAR_CART = 'clear_cart',
     CONFIRM_ORDER = 'confirm_order',
     CANCEL_ORDER = 'cancel_order',
     UPDATE_ORDER = 'update_order'
@@ -27,6 +28,8 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
                     ...state.cart.slice(action.item + 1)
                 ]
             ,};
+        case CLEAR_CART:
+            return {...state, cart: []};
         case CONFIRM_ORDER:
             return {...state,
                 orders: [...state.orders, {id: action.orderID, items: state.cart}],
@@ -47,15 +50,15 @@ export function getItems() {
         const items = [
             {
                 title: 'Chicken Sandwich',
-                price: '6.75'
+                price: 6.75
             },
             {
                 title: 'Spicy Deluxe',
-                price: '6.75'
+                price: 3.00
             },
             {
                 title: '8 Ct. Chicken Nuggets',
-                price: '6.75'
+                price: 2.75
             }
         ]
         dispatch({ type: GET_MENU_ITEMS, items: items});
@@ -78,7 +81,11 @@ export function removeItem(itemId) {
         dispatch({ type: REMOVE_ITEM, item: itemId});
     };
 }
-
+export function clearCart(){
+    return function(dispatch){
+        dispatch({type: CLEAR_CART})
+    }
+}
 export function confirmOrder(cartItems) {
     return function(dispatch){
         axios.post(`${API_URL}/confirm`,{cartItems})
