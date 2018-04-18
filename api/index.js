@@ -44,10 +44,10 @@ app.use(passport.initialize());
 // app.use('/api', authCheckMiddleware);
 
 // routes
-const authRoutes = require('./routes/auth');
-const apiRoutes = require('./routes/api');
-app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
+// const authRoutes = require('./routes/auth');
+// const apiRoutes = require('./routes/api');
+// app.use('/auth', authRoutes);
+// app.use('/api', apiRoutes);
 
 // all remaining requests return the React app, so it can handle routing.
 app.get('*', function (request, response) {
