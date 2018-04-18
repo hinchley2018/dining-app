@@ -1,7 +1,9 @@
 {
-  "name": "dining-app",
+  "name": "waitlist-client",
   "version": "0.1.0",
   "private": true,
+  "author": "Jonathon Hinchley",
+  "description": "Client for waitlist",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

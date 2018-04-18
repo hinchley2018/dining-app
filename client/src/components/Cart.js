@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {removeItem} from "../redux/orders";
+import {Link} from "react-router-dom";
 
 const CartItem = ({title, price, removeItem}) => {
     return (
@@ -8,16 +9,20 @@ const CartItem = ({title, price, removeItem}) => {
             {title}
             <br/>
             ${price}
-            <button onClick={removeItem}>Remove</button>
+            <button onClick={() => removeItem({title: title,price: price})}>Remove</button>
         </div>
     )
 }
 
 const Cart =({cartItems, removeItem}) => {
     return (
-        <div style={{display: 'flex', flexDirection: 'column', padding: '20px', justifyContent: 'space-evenly', height:'400px'}}>
+        <div>
             <h1>Cart</h1>
-            {cartItems.map(item => <CartItem title={item.title} price={item.price} removeItem={removeItem}/>)}
+            <Link to="/checkout"><button>Checkout</button></Link>
+            <div style={{display: 'flex', flexDirection: 'column', padding: '20px', justifyContent: 'space-evenly', height:'400px'}}>
+                {cartItems.map(item => <CartItem title={item.title} price={item.price} removeItem={removeItem}/>)}
+            </div>
+            <h2>Total ${}</h2>
         </div>
     )
 };
