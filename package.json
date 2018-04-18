@@ -1,0 +1,42 @@
+{
+  "name": "wait-list",
+  "version": "1.0.0",
+  "author": "Jonathon Hinchley",
+  "description": "API for wait-list",
+  "main": "index.js",
+  "scripts": {
+    "start-prod": "node server",
+    "start": "NODE_ENV=development node server",
+    "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "homepage": "https://github.com/hinchley2018/dining-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hinchley2018/dining-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hinchley2018/dining-app/issues"
+  },
+  "keywords": [
+    "nodejs",
+    "react",
+    "mongo"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^2.0.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-enforces-ssl": "^1.1.0",
+    "helmet": "^3.12.0",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.15",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "validator": "^9.4.1"
+  }
+}
