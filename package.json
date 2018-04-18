@@ -5,13 +5,13 @@
   "description": "API for wait-list",
   "main": "index.js",
   "scripts": {
-    "start-prod": "node server",
+    "start-prod": "node ./server/index.js",
     "start": "NODE_ENV=development node server",
     "heroku-postbuild": "cd client/ && npm install --only=dev && npm install && npm run build"
   },
   "cacheDirectories": [
     "node_modules",
-    "react-ui/node_modules"
+    "client/node_modules"
   ],
   "homepage": "https://github.com/hinchley2018/dining-app#readme",
   "repository": {
