@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {API_URL} from '../config';
+import uuidv4 from 'uuid/v4';
 
 // Types
 const GET_MENU_ITEMS = 'get_menu_items',
@@ -50,15 +51,15 @@ export function getItems() {
         const items = [
             {
                 title: 'Chicken Sandwich',
-                price: 6.75
+                price: 3.59
             },
             {
                 title: 'Spicy Deluxe',
-                price: 3.00
+                price: 4.15
             },
             {
                 title: '8 Ct. Chicken Nuggets',
-                price: 2.75
+                price: 3.35
             }
         ]
         dispatch({ type: GET_MENU_ITEMS, items: items});
@@ -88,9 +89,10 @@ export function clearCart(){
 }
 export function confirmOrder(cartItems) {
     return function(dispatch){
+        dispatch({ type: CONFIRM_ORDER, orderID: uuidv4()});
         axios.post(`${API_URL}/confirm`,{cartItems})
             .then(response => {
-                dispatch({ type: CONFIRM_ORDER, orderID: response.data});
+
             })
 
     };
